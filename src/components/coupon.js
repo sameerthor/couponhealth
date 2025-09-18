@@ -42,82 +42,66 @@ export default function Coupon({ store, coupon_data, tot_count, numb }) {
 
     return (
         <>
-            <div key={coupon_data.id} className="coupon-item">
-                <div className="isverified">
-                    <span className="storeName">{store.title} Coupon</span>
-                    <span className="verifiedIcon">
-                        <Image
-                            src={isUnverified ? "/images/unverified.svg" : "/images/verified.svg"}
-                            alt={isUnverified ? "unverified-icon" : "verified-icon"}
-                            width={14}
-                            height={14}
-                        />
-                        <small> {isUnverified ? 'Unverified' : 'Verified'}</small>
-                    </span>
+            <div key={coupon_data.id} className="coupon-card">
+                <div className="discount-badge">
+                    <i className="fas fa-heart">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <path d="M320 171.9L305 151.1C280 116.5 239.9 96 197.1 96C123.6 96 64 155.6 64 229.1L64 231.7C64 255.3 70.2 279.7 80.6 304L186.6 304C189.8 304 192.7 302.1 194 299.1L225.8 222.8C229.5 214 238.1 208.2 247.6 208C257.1 207.8 265.9 213.4 269.8 222.1L321.1 336L362.5 253.2C366.6 245.1 374.9 239.9 384 239.9C393.1 239.9 401.4 245 405.5 253.2L428.7 299.5C430.1 302.2 432.8 303.9 435.9 303.9L559.5 303.9C570 279.6 576.1 255.2 576.1 231.6L576.1 229C576 155.6 516.4 96 442.9 96C400.2 96 360 116.5 335 151.1L320 171.8zM533.6 352L435.8 352C414.6 352 395.2 340 385.7 321L384 317.6L341.5 402.7C337.4 411 328.8 416.2 319.5 416C310.2 415.8 301.9 410.3 298.1 401.9L248.8 292.4L238.3 317.6C229.6 338.5 209.2 352.1 186.6 352.1L106.4 352.1C153.6 425.9 229.4 493.8 276.8 530C289.2 539.4 304.4 544.1 319.9 544.1C335.4 544.1 350.7 539.5 363 530C410.6 493.7 486.4 425.8 533.6 352z"/>
+                        </svg>
+                    </i>
+                    {coupon_data.discount_value || "Best Deal"}
                 </div>
-                <div className="couponInfo">
-                    <div className="latest-coupon">
-                        <div className="coupon-title">{coupon_data.discount_value || "Best Deal"}</div>
-                        {/* <p className="couponDesc">{coupon_data.content}</p> */}
-                        <p className="couponDesc" dangerouslySetInnerHTML={{ __html: coupon_data.content }} />
-                    </div>
-                    <div className="coupon-detail coupon-button-type">
-                        {coupon_data.coupon_type === "code" ? (
-                            <a
-                                onClick={async (e) => {
-                                    // Set the copied_code in localStorage (no need to await as it's synchronous)
-                                    localStorage.setItem('copied_code', coupon_data.id);
+                <div className="coupon-content">
+                    <div className="couponHeading">Medicines Discount</div>
+                    <p className="coupondesc" dangerouslySetInnerHTML={{ __html: coupon_data.content }} />
+                    {coupon_data.coupon_type === "code" ? (
+                    <button 
+                         onClick={async (e) => {
+                                // Set the copied_code in localStorage (no need to await as it's synchronous)
+                                localStorage.setItem('copied_code', coupon_data.id);
 
-                                    // Copy the coupon code to the clipboard
-                                    navigator.clipboard.writeText(coupon_data.coupon_code).then(() => {
-                                        //                                        console.log("Coupon code copied to clipboard");
-                                    }).catch((error) => {
-                                        console.error("Error copying to clipboard: ", error);
-                                    });
+                                // Copy the coupon code to the clipboard
+                                navigator.clipboard.writeText(coupon_data.coupon_code).then(() => {
+                                    //                                        console.log("Coupon code copied to clipboard");
+                                }).catch((error) => {
+                                    console.error("Error copying to clipboard: ", error);
+                                });
 
-                                    // Open the store's page in a new tab
-                                    window.open(`/${store.slug}/#c=${coupon_data.id}`, "_blank");
+                                // Open the store's page in a new tab
+                                window.open(`/${store.slug}/#c=${coupon_data.id}`, "_blank");
 
-                                    // Log the affiliate URL
+                                // Log the affiliate URL
 
-                                    // Open the affiliate URL in the same window after a short delay (to ensure proper sequence)
-                                    setTimeout(() => {
-                                        window.open(store.affiliate_url, "_self");
-                                    }, 100);  // Delay added to ensure actions don't overlap
+                                // Open the affiliate URL in the same window after a short delay (to ensure proper sequence)
+                                setTimeout(() => {
+                                    window.open(store.affiliate_url, "_self");
+                                }, 100);  // Delay added to ensure actions don't overlap
 
-                                }}
-                                rel="nofollow"
-                                data-type="code"
-                                className="coupon-code coupon-button"
-                                href="javscript:void()"
-
+                            }}
+                        
+                            data-type="code"
+                            className="coupon-btn"
+                            
+                        >
+                            GET CODE
+                    </button>
+                      ) : (
+                    <button 
+                            onClick={async (e) => {
+                                await localStorage.setItem('copied_code', coupon_data.id)
+                                window.open(`/${store.slug}`, "_blank");
+                                setTimeout(() => {
+                                    window.open(store.affiliate_url, "_self");
+                                }, 100);
+                            }}
+                            data-type="sale"
+                            className="coupon-btn"
                             >
-                                <span class="code-text" rel="nofollow">{coupon_data.coupon_code}</span>
-                                <span class="get-code">Get Code</span>
-                            </a>
-                        ) : (
-                            <a
-                                onClick={async (e) => {
-
-                                    await localStorage.setItem('copied_code', coupon_data.id)
-                                    window.open(`/${store.slug}`, "_blank");
-                                    setTimeout(() => {
-                                        window.open(store.affiliate_url, "_self");
-                                    }, 100);
-                                }}
-                                rel="nofollow"
-                                data-type="sale"
-                                className="coupon-code coupon-button"
-                                href="javscript:void()"
-                            >
-                               
-                                <span class="code-text" rel="nofollow">*****************</span>
-                                <span class="get-code">Show Code</span>
-                            </a>
-                        )}
-                    </div>
+                            Get Deal
+                    </button>
+                      )} 
                 </div>
-            </div >
+            </div>
             <>
                 {modalOpen && coupon_data.coupon_type === "code" && (
                     <div

@@ -17,224 +17,245 @@ export default function Home({ categories, stores, blogs }) {
   return (
     <>
       <NextSeo
-        title="Supercosts - Best Discount Code, Coupons & Promo Codes 2025"
-        description="Find out the working and verified coupon codes only at Supercosts.com. All the coupons are tested and verified by the team."
+        title="Coupon.Template - Best Discount Code, Coupons & Promo Codes 2025"
+        description="Find out the working and verified coupon codes only at Coupon.Template.com. All the coupons are tested and verified by the team."
       />
-      <section className="homeBanner">
-        <div className="container">
-          <div className="banner-slider">
-            {/* <Carousel showThumbs={false}>
-              {[1, 2, 3, 4].map((num) => (
-                <div key={num}>
-                  <a href="#">
-                    <Image
-                      src={`/images/banner-${num}.png`}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      style={{ width: "100%", height: "auto" }}
-                      alt={`Banner ${num}`}
-                    />
-                  </a>
-                </div>
-              ))}
-            </Carousel> */}
-            <Carousel showThumbs={false}>
-              <div>
-                <a href="/category/clothing-and-accessories">
-                  <Image
-                    src={`/images/banner-1.png`}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                    alt={`fashion`}
-                  />
-                </a>
-              </div>
-              <div>
-                <a href="/category/beauty-products">
-                  <Image
-                    src={`/images/banner-2.png`}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                    alt={`beauty-products`}
-                  />
-                </a>
-              </div>
-              <div>
-                <a href="/category/lifestyle">
-                  <Image
-                    src={`/images/banner-3.png`}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                    alt={`Life-style`}
-                  />
-                </a>
-              </div>
-              <div>
-                <a href="/category/health-and-wellness">
-                  <Image
-                    src={`/images/banner-4.png`}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    style={{ width: "100%", height: "auto" }}
-                    alt={`health and wellness`}
-                  />
-                </a>
-              </div>
-            </Carousel>
+        
+ <section className="hero-section">
+    <div className="container">
+      <div className="row align-items-center">
+        
+        {/* <!-- Left Content --> */}
+        <div className="col-md-6">
+          <span className="badge rounded-pill px-3 py-2 mb-3">
+            Trusted by 1M+ Customers
+          </span>
+          <h1>
+            Stay Healthy. <br /> Save More. Live Better.
+          </h1>
+          <p className="mt-3 mb-4">
+            Discover top-quality healthcare & wellness products at exclusive prices.
+            Earn rewards every time you shop.
+          </p>
+
+          <div className="d-flex gap-3 flex-wrap btnBox">
+            <a href="#shop" className="btn btn-primary btn-lg">Shop Now</a>
+            <a href="#offers" className="btn btn-outline-success btn-lg">View Offers</a>
+          </div>
+
+          <div className="d-flex gap-5 mt-5 flex-wrap heroTxt">
+            <div className="highlight-box text-center">
+              <h5>500+</h5>
+              <small>Healthcare Brands</small>
+            </div>
+            {/* <div className="highlight-box text-center">
+              <h5>Instant</h5>
+              <small>Reward Points</small>
+            </div> */}
+            <div className="highlight-box text-center">
+              <h5>24/7</h5>
+              <small>Support</small>
+            </div>
           </div>
         </div>
-      </section>
-      {/* Explore Categories */}
-      <section className="container-fluid categories-box">
-        <div className="container">
-          <h2>Explore categories</h2>
-          <div className="row">
-            {categories.slice(0, 12).map((item, index) => (
-              <div
-                className="col-lg-3 col-md-6 col-sm-6 category-item"
-                key={index}
-              >
-                <div className="category-brand container">
-                  <div className="d-flex justify-content-center align-items-center">
-                    <Link href={`/category/${item.slug}`}>
-                      <span>
-                        <i className="fa fa-university" aria-hidden="true" />
-                      </span>
-                      {item.title}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="more-btn">
-            <Link href="/category">Explore More</Link>
+
+        {/* <!-- Right Image --> */}
+        <div className="col-md-6 text-center mt-4 mt-md-0 heroImg">
+          <Image 
+                src={'/images/helathcare-hero.webp'}
+                className="card-img-top" 
+                width={600}
+                height={400}
+                alt="Product 1" 
+            />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" className="promo-section">
+    <div className="container">
+      <h2>Popular Healthcare Products</h2>
+      <div className="row g-4">
+        <div className="col-md-4">
+          <div className="card h-100">
+            <Image 
+                src={'/images/wellness.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Wellness Supplement</h5>
+              <p className="card-text">Boost your immunity with daily vitamins.</p>
+              <a href="#" className="btn btn-primary">Shop Now</a>
+            </div>
           </div>
         </div>
-      </section>
-      {/* Trending Deals */}
-      <section className="trandingDeals">
-        <div className="container">
-          <h2>Trending Deals</h2>
-          <div className="row">
-            {stores
-              .filter((x) => x.home_options === "1")
-              .slice(0, 12)
-              .map((item, index) => (
-                <div className="col-lg-2 col-md-4 col-sm-6 mb-3 p-0" key={index}>
-                  <div className="trandingItem">
-                    <Link href={`/${item.slug}`}>
-                      <div>
-                        <Image
-                          src={
-                            validImageSrc(item.image)
-                              ? item.image
-                              : "/images/default-placeholder.png"
-                          }
-                          alt={`${item.title} coupons`}
-                          className="store-product-logo"
-                          width={93}
-                          height={40}
-                        />
-                        <div className="storeInfo text-center">
-                          <p>{item.seo_description}</p>
-                          <div class="angled-button">************************<span class="btn-angle">Show Code</span></div>
-                        </div>
-                      </div>
-                      <div className="boxFooter">
-                        <span>Active</span>
-                        <span>
-                          <Image
-                            src="/images/verified-green-icon.png"
-                            width={12}
-                            height={12}
-                            alt="Verified"
-                            className="verified-icon"
-                          />
-                          Verified
-                        </span>
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-              ))}
+        <div className="col-md-4">
+          <div className="card h-100">
+            <Image 
+                src={'/images/everherb.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Herbal Care</h5>
+              <p className="card-text">Natural remedies for everyday health.</p>
+              <a href="#" className="btn btn-primary">Shop Now</a>
+            </div>
           </div>
         </div>
-      </section>
-      {/* Featured Stores */}
-      <section className="container-fluid featured-store">
-        <div className="container">
-          <h2>Featured Stores</h2>
-          <div className="row row-cols-2">
-            {stores
-              .filter((x) => x.home_options === "2")
-              .slice(0, 12)
-              .map((item, index) => (
-                <div className="col-lg-2 col-md-3 col-sm-6 featured-box" key={index}>
-                  <div className="featured-item">
-                    <Link href={`/${item.slug}`}>
-                      <Image
-                        src={
-                          validImageSrc(item.image)
-                            ? item.image
-                            : "/images/default-placeholder.png"
-                        }
-                        width={500}
-                        height={375}
-                        alt={item.title}
-                        quality={100} // Increase image quality (default is 75)
-                      />
-                    </Link>
-                    <Link href={`/${item.slug}`} className="store-name">
-                      {item.title}
-                    </Link>
-                  </div>
-                </div>
-              ))}
+        <div className="col-md-4">
+          <div className="card h-100">
+            <Image 
+                src={'/images/fitness.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Fitness Essentials</h5>
+              <p className="card-text">Stay active with premium fitness gear.</p>
+              <a href="#" className="btn btn-primary">Shop Now</a>
+            </div>
           </div>
         </div>
-      </section>
-      {/* Trending Blogs */}
-      <section className="container-fluid tranding">
-        <div className="container">
-          <div className="row tranding-blog">
-            <h2>Trending Blogs</h2>
-            {blogs.slice(0, 12).map((item, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-12 blog-box" key={index}>
-                <Link href={`/blog/${item.slug}`} className="blog-item shadow-sm">
-                  <span>
-                    <Image
-                      src={
-                        validImageSrc(item.image)
-                          ? item.image
-                          : "/images/default-placeholder.png"
-                      }
-                      alt={item.meta_description}
-                      width={100}
-                      height={100}
-                    />
-                  </span>
-                  <p>{item.meta_description}</p>
-                  <span className="date">
-                    {moment(item.updated_at).format("LL")}
-                  </span>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className="more-btn">
-            <Link href="/blog">More Blogs</Link>
+      </div>
+    </div>
+  </section>
+
+  <section className="promo-section bg-light">
+    <div className="container">
+      <h2>Exclusive Health Offers</h2>
+      <div className="row g-4">
+        <div className="col-md-4">
+          <div className="card h-100">
+            <Image 
+                src={'/images/skin-care.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">50% Off on Skincare</h5>
+              <p className="card-text">Pamper your skin with dermatologist-approved products.</p>
+              <a href="#" className="btn btn-primary">Grab Deal</a>
+            </div>
           </div>
         </div>
-      </section>
+        <div className="col-md-4">
+          <div className="card h-100">
+           <Image 
+                src={'/images/everherb.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Buy 1 Get 1 Free</h5>
+              <p className="card-text">On selected wellness products. Limited time!</p>
+              <a href="#" className="btn btn-primary">Grab Deal</a>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="card h-100">
+           <Image 
+                src={'/images/wellness-p.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Buy 1 Get 1 Free</h5>
+              <p className="card-text">On selected wellness products. Limited time!</p>
+              <a href="#" className="btn btn-primary">Grab Deal</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section className="promo-section">
+    <div className="container">
+      <h2>New Arrivals</h2>
+      <div className="row g-4">
+        <div className="col-md-3">
+          <div className="card h-100">
+            <Image 
+                src={'/images/protienx.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Organic Protein Powder</h5>
+              <p className="card-text">Fuel your workouts with plant-based protein.</p>
+              <a href="#" className="btn btn-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card h-100">
+            <Image 
+                src={'/images/ortho.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Essential Oils Set</h5>
+              <p className="card-text">Relax with pure essential oils collection.</p>
+              <a href="#" className="btn btn-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card h-100">
+            <Image 
+                src={'/images/thermameter.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Digital Thermometer</h5>
+              <p className="card-text">Accurate and fast readings for your health.</p>
+              <a href="#" className="btn btn-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="card h-100">
+             <Image 
+                src={'/images/tea.webp'}
+                className="card-img-top" 
+                width={200}
+                height={120}
+                alt="Product 1" 
+            />
+            <div className="card-body">
+              <h5 className="card-title">Ayurvedic Tea Pack</h5>
+              <p className="card-text">Detox and refresh with herbal teas.</p>
+              <a href="#" className="btn btn-primary">Shop Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     </>
   );
 }
@@ -242,9 +263,9 @@ export default function Home({ categories, stores, blogs }) {
 export async function getStaticProps() {
   try {
     const [categoriesRes, storesRes, blogsRes] = await Promise.all([
-      fetch(`https://backend.supercosts.com/categories?ordering=title`),
-      fetch(`https://backend.supercosts.com/stores?ordering=title`),
-      fetch(`https://backend.supercosts.com/posts?ordering=-updated_at`),
+      fetch(`https://backend.Coupon.Template.com/categories?ordering=title`),
+      fetch(`https://backend.Coupon.Template.com/stores?ordering=title`),
+      fetch(`https://backend.Coupon.Template.com/posts?ordering=-updated_at`),
     ]);
 
     const [categories, stores, blogs] = await Promise.all([
