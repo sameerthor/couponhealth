@@ -111,16 +111,17 @@ export default function Coupon({ store, index, coupon_data, tot_count, numb }) {
                                 Get Deal
                         </button>
                         )} 
-                        <div className="accordBtn">
-                            <button className="showTncBox tnc tncBtns" data-bs-toggle="collapse" data-bs-target={`#${historyCollapseId}`} title="Show History">Coupon History</button>
-                            <button className="showTncBox tnc tncBtns" onClick={() => scrollToSection('scrollToScreenShot')}>Coupon Screenshot History</button>
-                            <button className="showTncBox tnc tncBtns" data-bs-toggle="collapse" data-bs-target={`#${collapseId}`} title="Show T &amp; C">Terms &amp; Conditions</button>  
-                        </div>
+                       
                         
                         
                     </div>
 
                 </div>
+                 <div className="accordBtn">
+                            <button className="showTncBox tnc tncBtns" data-bs-toggle="collapse" data-bs-target={`#${historyCollapseId}`} title="Show History">Coupon History</button>
+                            <button className="showTncBox tnc tncBtns" onClick={() => scrollToSection('scrollToScreenShot')}>Coupon Screenshot History</button>
+                            <button className="showTncBox tnc tncBtns" data-bs-toggle="collapse" data-bs-target={`#${collapseId}`} title="Show T &amp; C">Terms &amp; Conditions</button>  
+                        </div>
                 <div className="accordionBox">
                     {/* terms and condition accordion */}
                     <div id={accordionId} className="accordion">

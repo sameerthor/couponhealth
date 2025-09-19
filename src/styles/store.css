@@ -1919,6 +1919,7 @@ table>thead>tr>th, table>thead>tr>td {
         justify-content: space-between;
         align-items: center;
         margin-top: .5rem;
+        padding: 0 10px;
     }
     .accordBtn button{
        border: none;
@@ -1987,6 +1988,7 @@ table>thead>tr>th, table>thead>tr>td {
     background-color: transparent;
     color: #1a0dab;
     text-decoration: underline;
+    font-weight: 500;
 }
 /* text-history */
 .testHistory {
@@ -2039,6 +2041,52 @@ table>thead>tr>th, table>thead>tr>td {
     margin: auto;
     height: 560px;
 }
+.historyBox ul{
+    padding-left: 20px;
+}
+.historyBox ul li{
+    position: relative;
+    display: block;
+    padding-left: 20px;
+  }
+  .historyBox{
+    padding-left: 0;
+    padding-bottom: 20px;
+  }
+  .historyBox ul{
+    padding-left: 20px;
+  }
+  .historyBox ul li{
+    font-weight: 600;
+    color: #222;
+    font-size: .8rem;
+    line-height: 2;
+  }
+  .historyBox ul li::before{
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 10px;
+    width: 2px;
+    height: 100%;
+    background: #bbb;
+    display: block;
+  }
+  .historyBox ul li:last-child::before{
+   height: 0;
+  }
+  .historyBox ul li::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: #1c3d82;
+    margin-top: 7px;
+    border-radius: 50%;
+    display: block;
+  }
     /* Responsive */
     @media(max-width: 768px) {
       .healtCouponList .coupon-card {
