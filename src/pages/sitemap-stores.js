@@ -60,7 +60,7 @@ export default function Stores({ initialStoreData }) {
                                                 <li key={index}>
                                                     <Link href={`/${item.slug}`}>
                                                         {item.title}
-                                                    
+
                                                     </Link>
                                                 </li>
                                             ))}
@@ -94,8 +94,12 @@ export async function getStaticProps() {
 
                 while (hasMore) {
                     const res = await fetch(
-                        `https://backend.supercosts.com/store-page/alphabetical-filter/?letter=${letter}&page=${page}`
-                    );
+                        `https://admin.coupon.health/store-page/alphabetical-filter/?letter=${letter}&page=${page}`
+                        , {
+                            headers: {
+                                'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+                            },
+                        });
                     const data = await res.json();
 
                     if (data.results && data.results.length > 0) {

@@ -1,4 +1,4 @@
-const baseDomain = 'supercosts.com'
+const baseDomain = 'coupon.health'
 
 const toUrl = (data) =>
   `<url><loc>${data.url}</loc></url>`
@@ -19,7 +19,11 @@ export async function getServerSideProps({ res }) {
   const urlList = []
 
   const result = await fetch(
-    'https://backend.supercosts.com/store-search'
+    'https://admin.coupon.health/store-search',{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+}
   )
   const json = await result.json()
   const stores = json

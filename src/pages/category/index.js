@@ -36,7 +36,7 @@ function CategoryListing({ categories }) {
                         <div className="breadcrumb">
                             <ul>
                                 <li>
-                                    <Link href="/">supercosts.com</Link> /
+                                    <Link href="/">coupon.health</Link> /
                                 </li>
                                 <li>category</li>
                             </ul>
@@ -80,7 +80,11 @@ function CategoryListing({ categories }) {
 }
 
 export async function getStaticProps({ params }) {
-    const res = await fetch(`https://backend.supercosts.com/categories?ordering=title`);
+    const res = await fetch(`https://admin.coupon.health/categories?ordering=title`,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+});
     const categories = await res.json();
 
     return {

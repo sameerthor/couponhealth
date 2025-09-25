@@ -16,7 +16,7 @@ export default function about({ stores }) {
                     <div className="row">
                         <h1 className="text-center">Supercosts Cookie Policy</h1>
                         <p>
-                        We value your privacy at Supercosts and ensure transparency regarding how we use cookies and similar technologies on our website. This Cookie Policy outlines what cookies are and how we use them on our website (<a href="/">Supercosts.com</a>).
+                        We value your privacy at Supercosts and ensure transparency regarding how we use cookies and similar technologies on our website. This Cookie Policy outlines what cookies are and how we use them on our website (<a href="/">coupon.health</a>).
                         </p>
                         <h2>
                         What are Cookies? 
@@ -76,7 +76,7 @@ export default function about({ stores }) {
                             Contact Us
                         </h2>
                         <p>
-                            If you have questions about this Cookie policy, contact us at <a href="/contact">https://supercosts.com/contact</a>
+                            If you have questions about this Cookie policy, contact us at <a href="/contact">https://coupon.health/contact</a>
                         </p>
                         
                     </div>

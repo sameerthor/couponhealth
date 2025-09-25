@@ -33,12 +33,12 @@ const RatingBox = dynamic(() => import('@/components/ratingbox'),
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://supercosts.com"
+            "item": "https://coupon.health"
         }, store.category.length > 0 ? {
             "@type": "ListItem",
             "position": 2,
             "name": store.category[0].title,
-            "item": "https://supercosts.com/category/" + store.category[0].slug
+            "item": "https://coupon.health/category/" + store.category[0].slug
         } : '', {
             "@type": "ListItem",
             "position": store.category.length > 0 ? 3 : 2,
@@ -123,7 +123,7 @@ const RatingBox = dynamic(() => import('@/components/ratingbox'),
                             <div className="breadcrumb">
                                 <ul>
                                     <li>
-                                        <a href="/">supercosts.com</a> /
+                                        <a href="/">coupon.health</a> /
                                     </li>
                                     <li>{store.title} coupon code</li>
                                 </ul>
@@ -276,8 +276,8 @@ const RatingBox = dynamic(() => import('@/components/ratingbox'),
                                         height="250"
                                         decoding="async"
                                         style={{ color: "transparent" }}
-                                        src="/_next/image?url=https%3A%2F%2Fimg.scoopcost.com%2Fsand-pal-screenshot-2.png&w=828&q=75"
-                                        srcSet="/_next/image?url=https%3A%2F%2Fimg.scoopcost.com%2Fsand-pal-screenshot-2.png&w=640&q=75 1x, /_next/image?url=https%3A%2F%2Fimg.scoopcost.com%2Fsand-pal-screenshot-2.png&w=828&q=75 2x"
+                                        src="/_next/image?url=https%3A%2F%2Fimg.coupon.health%2Fsand-pal-screenshot-2.png&w=828&q=75"
+                                        srcSet="/_next/image?url=https%3A%2F%2Fimg.coupon.health%2Fsand-pal-screenshot-2.png&w=640&q=75 1x, /_next/image?url=https%3A%2F%2Fimg.coupon.health%2Fsand-pal-screenshot-2.png&w=828&q=75 2x"
                                         />
                                     </button>
                                     </div>
@@ -488,7 +488,11 @@ export async function getStaticProps({ params }) {
     let simCat = [];
 
     try {
-        const res = await fetch(`https://backend.supercosts.com/stores/${params.slug}/`);
+        const res = await fetch(`https://admin.coupon.health/stores/${params.slug}/`,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+});
 
         if (!res.ok) {
             console.error(`❌ API returned ${res.status} for slug: ${params.slug}`);
@@ -519,7 +523,7 @@ export async function getStaticProps({ params }) {
         // ✅ Related stores & categories
         if (store.category?.[0]) {
             const resRelStores = await fetch(
-                `https://backend.supercosts.com/stores/?category__id=${store.category[0].id}&ordering=-id`
+                `https://admin.coupon.health/stores/?category__id=${store.category[0].id}&ordering=-id`
             );
             let relStoresData = await resRelStores.json();
 
@@ -528,7 +532,7 @@ export async function getStaticProps({ params }) {
 
             if (relStores.length <= 3) {
                 const resCat = await fetch(
-                    `https://backend.supercosts.com/categories/?limit=4&offset=${Math.ceil(
+                    `https://admin.coupon.health/categories/?limit=4&offset=${Math.ceil(
                         parseInt(store.category[0].id) / 4
                     )}`
                 );
@@ -591,7 +595,7 @@ export async function getStaticProps({ params }) {
 
 
 export async function getStaticPaths() {
-    const res = await fetch("https://backend.supercosts.com/stores/");
+    const res = await fetch("https://admin.coupon.health/stores/");
     const stores = await res.json();
 
     const paths = stores.map(store => ({

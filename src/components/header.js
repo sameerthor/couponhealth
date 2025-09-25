@@ -15,7 +15,7 @@ export default function Header() {
     const router = useRouter();
     const [postCategories, setPostCategories] = useState([]);
     useEffect(() => {
-        axios.get('https://backend.supercosts.com/post-categories')
+        axios.get('https://admin.coupon.health/post-categories')
             .then(function (response) {
                 // handle success
                 console.log(response.data)
@@ -29,7 +29,7 @@ export default function Header() {
 
     const [filterdata, setFilterdata] = useState([]);
     function fetchData() {
-        axios.get('https://backend.supercosts.com/store-search/')
+        axios.get('https://admin.coupon.health/store-search/')
             .then(function (response) {
                 var d = response.data.map(item => { return { key: item.slug, value: item.title } })
                 setFilterdata(d);

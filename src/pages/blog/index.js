@@ -17,7 +17,7 @@ function Blog({ allPosts }) {
                         <div className="breadcrumb">
                             <ul>
                                 <li>
-                                    <a href="/">supercosts.com</a> /
+                                    <a href="/">coupon.health</a> /
                                 </li>
                                 <li>blogs</li>
                             </ul>
@@ -114,7 +114,11 @@ function Blog({ allPosts }) {
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
  
-    const res = await fetch(`https://backend.supercosts.com/posts?ordering=-id`)
+    const res = await fetch(`https://admin.coupon.health/posts?ordering=-id`,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
     const allPosts = await res.json()
 
     return {

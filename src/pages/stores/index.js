@@ -25,7 +25,11 @@ export default function Stores({ initialStoreData }) {
         try {
             const nextPage = pageNumbers[letter] + 1;
             const response = await fetch(
-                `https://backend.supercosts.com/store-page/alphabetical-filter/?letter=${letter}&page=${nextPage}`
+                `https://admin.coupon.health/store-page/alphabetical-filter/?letter=${letter}&page=${nextPage}`,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+}
             );
             const data = await response.json();
 
@@ -136,7 +140,11 @@ export async function getStaticProps() {
     try {
         const responses = await Promise.all(
             alphabets.map((letter) =>
-                fetch(`https://backend.supercosts.com/store-page/alphabetical-filter/?letter=${letter}&page=1`)
+                fetch(`https://admin.coupon.health/store-page/alphabetical-filter/?letter=${letter}&page=1`,,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
                     .then((res) => res.json())
                     .then((data) => ({ [letter]: data.results || [] }))
             )

@@ -135,7 +135,7 @@ export default function about({ stores }) {
             
                             </h2>
                         <p>
-                            If you have any questions or concerns about our Privacy  or how your data is handled, contact us at <a href="/contact">https://supercosts.com/contact</a>
+                            If you have any questions or concerns about our Privacy  or how your data is handled, contact us at <a href="/contact">https://coupon.health/contact</a>
                         </p>
                         <p>
                             By using Supercosts, you agree to this <a href="/privacy-policy">Privacy Policy</a> 

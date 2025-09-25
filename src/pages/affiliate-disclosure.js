@@ -34,7 +34,7 @@ export default function about({ stores }) {
                         Contact Us
                         </h2>
                         <p>
-                        If you have any questions regarding this Affiliate Disclosure or how our affiliate partnerships work, please contact us at <a href="/contact">https://supercosts.com/contact</a>
+                        If you have any questions regarding this Affiliate Disclosure or how our affiliate partnerships work, please contact us at <a href="/contact">https://coupon.health/contact</a>
                         </p>
                     </div>
                 </div>  

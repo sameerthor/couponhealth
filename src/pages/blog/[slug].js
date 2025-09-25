@@ -31,7 +31,7 @@ const data = [
 ];
 
 function blogDetail({ post, posts }) {
-          const [filterdata,setFilterData]=useState(posts.map(item=>{return {key:item.slug,value:item.title}}))
+    const [filterdata, setFilterData] = useState(posts.map(item => { return { key: item.slug, value: item.title } }))
     return (
         <>
             <NextSeo
@@ -44,7 +44,7 @@ function blogDetail({ post, posts }) {
                         <div className="breadcrumb">
                             <ul>
                                 <li>
-                                    <Link href="/">supercosts.com</Link> /
+                                    <Link href="/">coupon.health</Link> /
                                 </li>
                                 <li>{post.title}</li>
                             </ul>
@@ -60,13 +60,13 @@ function blogDetail({ post, posts }) {
                                     <span className="catg">{post.category.length > 0 && post.category[0].title}</span>
                                 </div>
                                 <div className="searchBox">
-                                  
+
                                     <ReactSearchBox
                                         placeholder="Search Blog"
                                         value="Doe"
                                         data={filterdata}
                                         clearOnSelect={true}
-                                        onSelect={(record) =>  Router.push('/blog/'+record.item.key)}
+                                        onSelect={(record) => Router.push('/blog/' + record.item.key)}
                                         leftIcon={<svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width={16}
@@ -105,13 +105,13 @@ function blogDetail({ post, posts }) {
                                     <span className="authorName">Mashma M</span>
                                 </div>
                                 <div className="firstImage">
-                                    <Image 
+                                    <Image
                                         src={`${post.image}`}
-                                        alt="Featured Image" 
-                                        width={0} 
-                                        height={0} 
+                                        alt="Featured Image"
+                                        width={0}
+                                        height={0}
                                         layout="responsive"
-                                        priority 
+                                        priority
                                     />
                                 </div>
                                 <div className="blogcontentData" dangerouslySetInnerHTML={
@@ -253,14 +253,22 @@ function blogDetail({ post, posts }) {
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
 
-    const res = await fetch(`https://backend.supercosts.com/posts/${params.slug}`)
+    const res = await fetch(`https://admin.coupon.health/posts/${params.slug}`, {
+        headers: {
+            'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+        },
+    })
     const post = await res.json()
     if (post.detail) {
         return {
             notFound: true
         };
     }
-    const resPosts = await fetch(`https://backend.supercosts.com/posts/?ordering=-updated_at`)
+    const resPosts = await fetch(`https://admin.coupon.health/posts/?ordering=-updated_at`, {
+        headers: {
+            'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+        },
+    })
     const posts = await resPosts.json()
 
     return {
@@ -279,7 +287,11 @@ export async function getStaticProps({ params }) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-    const res = await fetch('https://backend.supercosts.com/posts')
+    const res = await fetch('https://admin.coupon.health/posts', {
+        headers: {
+            'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+        },
+    })
     const posts = await res.json()
 
     // Get the paths we want to pre-render based on posts

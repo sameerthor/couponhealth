@@ -20,7 +20,7 @@ function blogCategory({ allPosts, category }) {
                         <div className="breadcrumb">
                             <ul>
                                 <li>
-                                    <a href="/">supercosts.com</a> /
+                                    <a href="/">coupon.health</a> /
                                 </li>
                                 <li>blogs</li>
                             </ul>
@@ -118,14 +118,22 @@ function blogCategory({ allPosts, category }) {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
-    const cat = await fetch(`https://backend.supercosts.com/post-categories/${params.slug}`)
+    const cat = await fetch(`https://admin.coupon.health/post-categories/${params.slug}`,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
     const category = await cat.json()
     if (category.detail) {
         return {
             notFound: true
         };
     }
-    const res = await fetch(`https://backend.supercosts.com/posts?search=${params.slug}&ordering=-id`)
+    const res = await fetch(`https://admin.coupon.health/posts?search=${params.slug}&ordering=-id`,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
     const allPosts = await res.json()
 
     return {
@@ -144,7 +152,11 @@ export async function getStaticProps({ params }) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-    const res = await fetch('https://backend.supercosts.com/post-categories')
+    const res = await fetch('https://admin.coupon.health/post-categories',{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
     const categories = await res.json()
 
     // Get the paths we want to pre-render based on posts

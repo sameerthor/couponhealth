@@ -16,10 +16,14 @@ export async function getServerSideProps({ res, req }) {
 
 
     var urlList = []
-    const result = await fetch('https://backend.supercosts.com/store-image/')
+    const result = await fetch('https://admin.coupon.health/store-image/',{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
     const stores = await result.json()
     stores.forEach(element => {
-        urlList.push({ url: "https://supercosts.com/" + element.slug,image: element.image })
+        urlList.push({ url: "https://coupon.health/" + element.slug,image: element.image })
     });
 
 

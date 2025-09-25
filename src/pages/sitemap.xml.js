@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 
 export async function getServerSideProps({ res }) {
     const fs = require('fs'); // ✅ Only require here (on server)
-    const baseUrl = 'https://supercosts.com';
+    const baseUrl = 'https://coupon.health';
 
     const walkStaticPages = (dir, basePath = '') => {
         let urls = [];
@@ -42,7 +42,11 @@ export async function getServerSideProps({ res }) {
     // 🟢 Fetch category slugs
     let categorySlugs = [];
       try {
-        const response = await fetch('https://backend.supercosts.com/categories')
+        const response = await fetch('https://admin.coupon.health/categories',{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
         const data = await response.json();
         categorySlugs = data.map(cat => `/category/${cat.slug}`);
     } catch (err) {

@@ -88,7 +88,7 @@ export default function about({ stores }) {
     
                             </h2>
                         <ul>
-                            <li><strong> Transparency:</strong>  Every coupon code and deal listed on Supercosts.com is tested and verified. We value your trust and make sure to offer deals that work every time. Our team checks every code before publishing on the site to avoid disappointment during checkout. </li>
+                            <li><strong> Transparency:</strong>  Every coupon code and deal listed on coupon.health is tested and verified. We value your trust and make sure to offer deals that work every time. Our team checks every code before publishing on the site to avoid disappointment during checkout. </li>
                             <li><strong> Customer-centric:</strong>  Our goal is to make your savings journey effortless. From the moment you start browning our site till the time you make a final purchase, we provide a hassle-free experience</li>
                             <li><strong> Privacy:</strong> Your privacy is our priority! We protect your personal information and ensure that your data is safe while using our platform. At Supercosts, you can shop confidently knowing that your information is secure. Enjoy a safe browsing experience! 
                             </li>

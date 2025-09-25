@@ -116,7 +116,7 @@ export default function about({ stores }) {
 
                         </h2>
                         <p>
-                        If you have any questions or concerns about these Terms of Use, please contact us at  <a href="/contact">https://supercosts.com/contact</a>
+                        If you have any questions or concerns about these Terms of Use, please contact us at  <a href="/contact">https://coupon.health/contact</a>
                         </p>
                         <p>
                         Thank you for using Supercosts! :)

@@ -237,7 +237,11 @@ function Category({ category, stores, categories }) {
 // revalidation is enabled and a new request comes in
 export async function getStaticProps({ params }) {
 
-    const res = await fetch(`https://backend.supercosts.com/categories/${params.slug}`)
+    const res = await fetch(`https://admin.coupon.health/categories/${params.slug}`,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
     const category = await res.json()
     if (category.detail) {
         return {
@@ -246,7 +250,11 @@ export async function getStaticProps({ params }) {
     }
     const stores = category.store_set.results;
 
-    const resCategories = await fetch(`https://backend.supercosts.com/categories/?ordering=-id`)
+    const resCategories = await fetch(`https://admin.coupon.health/categories/?ordering=-id`,{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
     const categoriesData = await resCategories.json()
     const categories = arrayShuffle(categoriesData);
     return {
@@ -266,7 +274,11 @@ export async function getStaticProps({ params }) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-    const res = await fetch('https://backend.supercosts.com/categories')
+    const res = await fetch('https://admin.coupon.health/categories',{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+})
     const categories = await res.json()
 
     // Get the paths we want to pre-render based on categories
