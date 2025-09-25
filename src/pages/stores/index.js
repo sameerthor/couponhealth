@@ -140,7 +140,7 @@ export async function getStaticProps() {
     try {
         const responses = await Promise.all(
             alphabets.map((letter) =>
-                fetch(`https://admin.coupon.health/store-page/alphabetical-filter/?letter=${letter}&page=1`,,{
+                fetch(`https://admin.coupon.health/store-page/alphabetical-filter/?letter=${letter}&page=1`,{
   headers: {
     'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
   },

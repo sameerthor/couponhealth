@@ -595,7 +595,11 @@ export async function getStaticProps({ params }) {
 
 
 export async function getStaticPaths() {
-    const res = await fetch("https://admin.coupon.health/stores/");
+    const res = await fetch("https://admin.coupon.health/stores/",{
+  headers: {
+    'x-api-key': process.env.SECRET_KEY, // must be defined in .env.local
+  },
+});
     const stores = await res.json();
 
     const paths = stores.map(store => ({
